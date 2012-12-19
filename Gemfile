@@ -10,6 +10,7 @@ gem 'pg'
 gem 'twitter-bootstrap-rails', '2.1.7'
 gem 'thin'
 gem 'haml'
+gem 'haml-rails'
 
 gem 'quiet_assets', :group => :development
 
