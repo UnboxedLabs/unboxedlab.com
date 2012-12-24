@@ -17,19 +17,12 @@
     %link(href="images/favicon.ico" rel="shortcut icon")
 
 
-  %body
-    .container
-      .content
-        .row
-          .span12
-            = bootstrap_flash
-            = yield
-
-
-      .footer-wrapper
-        %footer &copy; Unboxed Labs 2012
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application"
+  %body   
+    .container 
+      = bootstrap_flash
+      = yield
+  /
+    Javascripts
+    \==================================================
+  / Placed at the end of the document so the pages load faster
+  = javascript_include_tag "application"
