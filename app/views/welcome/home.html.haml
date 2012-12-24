@@ -2,6 +2,12 @@
 	.unboxed
 		.logo
 			= image_tag("unboxed_wp_full_logo.png")
+		.content
+			:markdown
+				<p class="lead">
+				We are currently in development mode.<br/> 
+				Please check back or subscribe for a notification for a launch date. 		
+				</p>
 		.subscribe
 			= form_tag "/subscribe", :method => :post, class: "subscribe-form", id: "ub-subscribe" do
 				.input-append

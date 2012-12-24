@@ -16,7 +16,7 @@ gem 'quiet_assets', :group => :development
 gem 'awesome_print'
 
 gem 'twitter-bootstrap-rails'
-
+gem 'rdiscount'
 
 gem 'libv8', '~> 3.11.8'
 # Gems used only for assets and not required
