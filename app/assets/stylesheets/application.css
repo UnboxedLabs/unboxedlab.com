@@ -12,4 +12,12 @@
  *= require_tree .
  */
 
-
+#flash-message{
+    position: absolute;
+    top: 50%;
+    margin-top: 245px;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    z-index: -1000;
+}

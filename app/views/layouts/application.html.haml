@@ -19,8 +19,11 @@
 
   %body   
     .container 
-      = bootstrap_flash
+      -#= bootstrap_flash
       = yield
+      #flash-message
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: alert_type(name), id: "flash-#{name}"
   /
     Javascripts
     \==================================================
