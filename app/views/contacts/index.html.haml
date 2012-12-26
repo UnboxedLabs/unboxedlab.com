@@ -1,0 +1,125 @@
+%h2
+  = pluralize(@contacts.size, 'contact')
+  found.
+
+#hourly_chart
+
+%h1 Hourly Contacts
+%table
+  %tr.head
+    %th.hour Hour
+    %th.hour Contacts
+.scrollable.hour
+  %table
+    - @hourly_contacts.keys.sort.reverse.each_with_index do |k, idx|
+      - v = @hourly_contacts[k]
+      %tr{:class => cycle('odd', 'even')}
+        %td.awesome= DateTime.strptime( k, "%Y%m%d%H" ).strftime( "%H:%M" )
+        %td.val= v
+      - break if idx > 23
+
+  .hr( style="margin:30px" )
+
+#daily_chart
+
+%h1 Daily Contacts
+%table
+  %tr.head
+    %th.day Day
+    %th.day Contacts
+.scrollable.day
+  %table
+    - @daily_contacts.keys.sort.reverse.each_with_index do |k, idx|
+      - v = @daily_contacts[k]
+      %tr{:class => cycle('odd', 'even')}
+        %td.awesome= DateTime.strptime( k, "%Y%m%d" ).strftime( "%a %b %d" )
+        %td.val= v
+
+  .hr( style="margin:30px" )
+
+%h1 Contacts
+%table
+  %tr.head
+    %th.cont Email
+    %th.cont Created At
+.scrollable.cont
+  %table
+    - @contacts.each do |contact|
+      %tr{:class => cycle('odd', 'even')}
+        %td= contact.email
+        %td= contact.created_at ? contact.created_at.strftime( "%a %b %d, %I:%M%p" ) : nil
+
+:javascript
+  $(document).ready(function() {
+    var data, hourly, labels, options;
+    labels = $.map($('.hour .awesome'), function(el) {
+      return $(el).html();
+    });
+    data = $.map($('.hour .val'), function(el) {
+      return parseInt($(el).html(), 10);
+    });
+    options = {
+      chart: {
+        renderTo: 'hourly_chart',
+        type: 'line',
+        backgroundColor: '#29264D'
+      },
+      colors: ['#ddf'],
+      title: {
+        text: 'Hourly Contacts',
+        style: {
+          color: '#ccc'
+        }
+      },
+      xAxis: {
+        categories: labels.reverse()
+      },
+      yAxis: {
+        title: {
+          text: 'Emails'
+        }
+      },
+      series: [
+        {
+          name: 'Emails',
+          data: data.reverse()
+        }
+      ]
+    };
+    hourly = new Highcharts.Chart(options);
+    labels = $.map($('.day .awesome'), function(el) {
+      return $(el).html();
+    });
+    data = $.map($('.day .val'), function(el) {
+      return parseInt($(el).html(), 10);
+    });
+    options = {
+      chart: {
+        renderTo: 'daily_chart',
+        type: 'line',
+        backgroundColor: '#29264D'
+      },
+      colors: ['#ddf'],
+      title: {
+        text: 'Daily Contacts',
+        style: {
+          color: '#ccc'
+        }
+      },
+      xAxis: {
+        categories: labels.reverse()
+      },
+      yAxis: {
+        title: {
+          text: 'Emails'
+        }
+      },
+      series: [
+        {
+          name: 'Emails',
+          data: data.reverse()
+        }
+      ]
+    };
+    return hourly = new Highcharts.Chart(options);
+  });

@@ -14,14 +14,23 @@ class ApplicationController < ActionController::Base
     flash.discard
   end
 
+  def secure_with_digest
+    return true if Rails.env.development? || Rails.env.test?
+
+    authenticate_or_request_with_http_digest(REALM) do |username|
+      password = ENV['UNBOXED_ADMIN']
+      if password.blank?
+        nil
+      else
+        Digest::MD5.hexdigest([username, REALM, password].join(":"))
+      end
+    end
+  end
   private
 
   def flash_message
     [:error, :warning, :notice].each do |type|
-      puts "TYPE #{type}"
-      puts "FLASH TYPE #{flash[type].blank?}"
       unless flash[type].blank?
-        puts "WTF!"
         return flash[type]
       end
     end
@@ -30,10 +39,7 @@ class ApplicationController < ActionController::Base
 
   def flash_type
     [:error, :warning, :notice].each do |type|
-      puts "TYPE #{type}"
-      puts "FLASH TYPE #{flash[type].blank?}"
       unless flash[type].blank?
-        puts "WTF!"
         return type
       end
     end

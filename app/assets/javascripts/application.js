@@ -35,7 +35,7 @@ var show_ajax_message = function(msg, type) {
             close +
             msg +
         '</div>'
-    ).slideDown('slow');
+    ).fadeIn();
     fade_flash();
 };
 

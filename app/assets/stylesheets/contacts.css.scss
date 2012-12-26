@@ -1,3 +1,41 @@
 // Place all the styles related to the Contacts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.contacts { color: rgba(147, 145, 172, 1); background: #1B1B24; font-family: neutra; border-top: 1px solid #14141A; }
+
+.contacts-view {
+  margin: 1em auto; width: 960px;
+  margin-bottom: 18px;
+  text-shadow: 0 -1px 1px #0D0631;
+
+  h1 { margin-top: 1.5em; }
+  h2 { margin: 1em auto; padding-left: 2em; }
+
+  table {
+    width: 100%;
+    tr.head {
+      text-align: left; border-bottom: 2px solid #494573; margin: 0; margin-top: -2px;
+      padding: 1em 0; background: #29264D; width: 100%; height: 1em;
+      font-size: 20px; border-bottom: 1px solid #494573;
+      th { width: 73%; padding-left: 1em; height: 2em; }
+      th.day { width: 61%; }
+      th.cont { width: 62%; }
+    }
+  }
+
+  .scrollable {
+    width: 960px; overflow: auto; margin: 1em auto; height: auto;
+
+    table {
+      font-weight: bold; width: 100%; position: relative;
+
+      tr {
+        height: 2em;
+        &.odd { background: #494573; }
+      }
+
+      td {  padding-left: 1em; }
+    }
+  }
+}
