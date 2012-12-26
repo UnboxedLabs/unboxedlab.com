@@ -10,7 +10,7 @@
 				</p>
 		.subscribe
 			= form_tag "/subscribe", :method => :post, class: "subscribe-form", id: "ub-subscribe", remote: true do
-				.input-append
+				.input-append.control-group
 					= email_field_tag "subscribe", "", placeholder: "your@email.com", name: "contact[email]"
 					= button_tag "Notify me!", class: "btn btn-inverse notify"
 	

@@ -1,7 +1,7 @@
 class Contact < ActiveRecord::Base
   attr_accessible :email, :ip, :name, :user_agent
 
-  validates :email, :uniqueness => true
+  validates :email, :uniqueness => true, :email => true
 
   def self.statistics
     hourly_contacts = { }

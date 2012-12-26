@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
   end
 
   def create
+
     if params[:contact].blank? || params[:contact][:email].blank?
       flash.now[:error] = "Missing contact email!"
       render json: { message: "Missing contact email" }, status: :bad_request and return
@@ -24,7 +25,7 @@ class ContactsController < ApplicationController
     if contact.errors.any?
       Rails.logger.error contact.errors.inspect
       message = "An error occurred please try again later."
-      flash.now[:error] = message
+      flash.now[:error] = contact.errors.full_messages
       render json: { message: message }, error: message, status: :unprocessable_entity
     else
       message = "Thank you for subscribing!"

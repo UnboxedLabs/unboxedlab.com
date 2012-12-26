@@ -4,7 +4,12 @@
 
 $ ->
   $("#ub-subscribe").bind "ajax:success", (evt, data, status, xhr) ->
-    $("#subscribe").val("");
+    $("#subscribe").val("")
 
   $("#ub-subscribe").bind "ajax:error", (evt, data, status, xhr) ->
-    $("#subscribe").focus();
+    $("#subscribe").focus()
+    $("#subscribe").select()
+    $(".control-group").addClass("error")
+
+  $("#subscribe").keypress ->
+    $(".control-group").removeClass("error") if $(".control-group").hasClass "error"
