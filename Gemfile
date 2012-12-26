@@ -15,7 +15,6 @@ gem 'quiet_assets', :group => :development
 
 gem 'awesome_print'
 
-gem 'twitter-bootstrap-rails'
 gem 'rdiscount'
 
 gem 'libv8', '~> 3.11.8'
@@ -35,6 +34,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'twitter-bootstrap-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

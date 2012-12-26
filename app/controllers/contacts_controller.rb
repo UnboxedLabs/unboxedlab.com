@@ -34,7 +34,7 @@ class ContactsController < ApplicationController
   def require_contact_email
     if params[:contact].blank? || params[:contact][:email].blank?
       flash.now[:error] = "Missing contact email!"
-      render json: { message: "Missing contact email" }, status: :bad_request, error: "Missing contact email" and return
+      render json: { message: "Missing contact email" }, status: :bad_request and return
     end
   end
 
