@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
 
     contact_attr = params[:contact]
     if Contact.where(email: contact_attr[:email]).exists?
-      flash.now[:notice] = "Thank you! You'll be notified at launch date."
+      flash.now[:notice] = "The email #{contact_attr[:email]} has already subscribed!"
       render json: { message: "You have subscribed!" }, status: :accepted, notice: "You have subscribed!" and return
     end
 
@@ -28,17 +28,9 @@ class ContactsController < ApplicationController
       flash.now[:error] = contact.errors.full_messages
       render json: { message: message }, error: message, status: :unprocessable_entity
     else
-      message = "Thank you for subscribing!"
+      message = "Thank you for subscribing! You'll be notified at launch date."
       flash.now[:notice] = message
       render json: { message: message }, status: :created
     end
   end
-
-  private
-
-  def require_contact_email
-
-  end
-
-
 end
