@@ -24,6 +24,7 @@
       #flash-message
         - flash.each do |name, msg|
           = content_tag :div, msg, class: alert_type(name), id: "flash-#{name}"
+  = render 'shared/google_analytics'
   /
     Javascripts
     \==================================================
