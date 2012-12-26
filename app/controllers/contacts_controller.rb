@@ -1,7 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :secure_with_digest, :only => [:index]
   before_filter :verify_authenticity_token
-	before_filter :require_contact_email, only: [:create]
   def index
     @contacts = Contact.all(order: "created_at DESC")
     @hourly_contacts, @daily_contacts = Contact.statistics
@@ -9,6 +8,11 @@ class ContactsController < ApplicationController
   end
 
   def create
+    if params[:contact].blank? || params[:contact][:email].blank?
+      flash.now[:error] = "Missing contact email!"
+      render json: { message: "Missing contact email" }, status: :bad_request and return
+    end
+
     contact_attr = params[:contact]
     if Contact.where(email: contact_attr[:email]).exists?
       flash.now[:notice] = "You have subscribed!"
@@ -32,10 +36,7 @@ class ContactsController < ApplicationController
   private
 
   def require_contact_email
-    if params[:contact].blank? || params[:contact][:email].blank?
-      flash.now[:error] = "Missing contact email!"
-      render json: { message: "Missing contact email" }, status: :bad_request and return
-    end
+
   end
 
 
