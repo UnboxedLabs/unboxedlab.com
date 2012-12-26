@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   after_filter :flash_to_headers
 
+  REALM = 'unboxed'
+
   def flash_to_headers
     return unless request.xhr?
     msg = flash_message
