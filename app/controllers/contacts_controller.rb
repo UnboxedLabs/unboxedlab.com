@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
 
     contact_attr = params[:contact]
     if Contact.where(email: contact_attr[:email]).exists?
-      flash.now[:notice] = "You have subscribed!"
+      flash.now[:notice] = "Thank you! You'll be notified at launch date."
       render json: { message: "You have subscribed!" }, status: :accepted, notice: "You have subscribed!" and return
     end
 
