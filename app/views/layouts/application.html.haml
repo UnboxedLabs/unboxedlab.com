@@ -19,14 +19,13 @@
 
   %body   
     .container 
-      -#= bootstrap_flash
       = yield
       #flash-message
         - flash.each do |name, msg|
           = content_tag :div, msg, class: alert_type(name), id: "flash-#{name}"
-  = render partial: 'shared/google_analytics'
   /
     Javascripts
     \==================================================
   / Placed at the end of the document so the pages load faster
+  = render partial: 'shared/google_analytics'
   = javascript_include_tag "application"
